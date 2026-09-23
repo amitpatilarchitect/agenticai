@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 import sys
 import warnings
-
 from datetime import datetime
 
-import engineering_team.patch 
-from .tools.sandbox_tools import reset_sandbox
+import engineering_team.patch  # noqa: F401 — applies CrewAI MCP monkey-patch on import
 from engineering_team.crew import EngineeringTeam
+from .tools.sandbox_tools import reset_sandbox
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -28,12 +27,13 @@ The system should prevent the user from withdrawing funds that would leave them 
  The system has access to a function get_share_price(symbol) which returns the current price of a share, and includes a test implementation that returns fixed prices for AAPL, TSLA, GOOGL.
 """
 
+
 def run():
     """
     Run the crew.
     """
     inputs = {
-       'requirements': requirements
+        'requirements': requirements,
     }
 
     try:
